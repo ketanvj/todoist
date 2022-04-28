@@ -2,30 +2,39 @@ package com.incubyte.todoist;
 
 import io.micronaut.http.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
-@Controller("todos/")
+@Controller("/todos")
 public class TodoistController {
-    private final TodoistService todoistService;
+  private final TodoistService todoistService;
 
-    public TodoistController(TodoistService todoistService) {
-           this.todoistService = todoistService;
-    }
+  public TodoistController(TodoistService todoistService) {
+    this.todoistService = todoistService;
+  }
 
-    @Post
-    public Todoist save(@Body Todoist todoist) {
-        return todoistService.save(todoist);
+  @Post
+  public Todoist save(@Body Todoist todoist) {
+    return todoistService.save(todoist);
+  }
 
-    }
+  @Get("/{id}")
+  public Optional<Todoist> get(Long id) {
+    return todoistService.getById(id);
+  }
 
-    @Get("/{id}")
-    public Optional<Todoist> get(Long id) {
-        return todoistService.getById(id);
-    }
 
-    @Get
-    public List<Todoist> getAllTodos() {
-        return todoistService.getAllTodos();
-    }
+  @Get
+  public Iterable<Todoist> getAllTodos() {
+    return todoistService.getAllTodos();
+  }
+
+  @Get("/open")
+  public Iterable<Todoist> getAllTodosWithOpenStatus() {
+    return todoistService.getAllTodosByStatus("open");
+  }
+
+  @Get("/closed")
+  public Iterable<Todoist> getAllTodosWithClosedStatus() {
+    return todoistService.getAllTodosByStatus("closed");
+  }
 }

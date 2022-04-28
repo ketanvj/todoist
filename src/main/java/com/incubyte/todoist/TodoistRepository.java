@@ -5,4 +5,5 @@ import io.micronaut.data.repository.CrudRepository;
 
 @Repository
 public interface TodoistRepository extends CrudRepository<Todoist, Long> {
+  Iterable<Todoist> findAllOrderById();
 }

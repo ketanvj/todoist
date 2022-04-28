@@ -6,35 +6,47 @@ import javax.persistence.Id;
 
 @Entity
 public class Todoist {
-    public void setId(Long id) {
-        this.id = id;
-    }
+  @Id
+  @GeneratedValue
+  private Long id;
+  private String description;
 
-    @Id
-    @GeneratedValue
-    private Long id;
+  private  boolean done;
 
-    public Long getId() {
-        return id;
-    }
+  public Todoist(String description, boolean done) {
+    this.description = description;
+    this.done = done;
+  }
+  public Todoist() {
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public String getStatus() {
-        return status;
-    }
+  public boolean isDone() {
+    return done;
+  }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
 
-    private String description;
-    private String status;
+    Todoist todoist = (Todoist) o;
 
+    if (id != null ? !id.equals(todoist.id) : todoist.id != null) return false;
+    return description != null ? description.equals(todoist.description) : todoist.description == null;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id != null ? id.hashCode() : 0;
+    result = 31 * result + (description != null ? description.hashCode() : 0);
+    return result;
+  }
 }
