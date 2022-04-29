@@ -29,7 +29,7 @@ dependencies {
     testImplementation("org.mockito:mockito-core")
     testImplementation 'org.mockito:mockito-junit-jupiter:4.5.1'
     // https://mvnrepository.com/artifact/de.cronn/test-utils
-    implementation group: 'de.cronn', name: 'test-utils', version: '0.3.0'
+    implementation group: 'org.dbunit', name: 'dbunit', version: '2.5.1'
 
 
 }
