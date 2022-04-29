@@ -34,7 +34,7 @@ public class TodoistFeatureTest {
     Long id = storedTodo.getId();
     Todoist getTodo = httpClient.toBlocking().retrieve(HttpRequest.GET("todos/" + id), Argument.of(Todoist.class));
     Assertions.assertThat(storedTodo.getDescription()).isEqualTo(getTodo.getDescription());
-    Assertions.assertThat(storedTodo.getDescription()).isEqualTo("Get Vegetables");
+    Assertions.assertThat(storedTodo.getDescription()).isEqualTo("Get Vegetables1");
 
 //    //get all
 //    Todoist todoVeg = new Todoist("Get Vegetables", false);
